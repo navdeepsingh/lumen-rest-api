@@ -34,4 +34,10 @@ class AdminController extends Controller
          return response()->json(['status' => 'fail'],401);
       }
     }
+
+    public function validateuser(Request $request)
+    {
+      //$user = User::where('api_key', $request->input('email'))->first();
+      return response()->json(['status' => 'validate']);
+    }
 }

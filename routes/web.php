@@ -20,6 +20,7 @@ $router->get('/phpinfo', function () {
 
 $router->group(['prefix' => 'api/'], function () use ($router) {
   $router->post('login/','AdminController@authenticate');
+  $router->post('validate/','AdminController@validateuser');
   $router->post('qrcode/','QrcodeController@store');
   $router->get('qrcode/', 'QrcodeController@index');
   $router->get('qrcode/{id}/', 'QrcodeController@show');
