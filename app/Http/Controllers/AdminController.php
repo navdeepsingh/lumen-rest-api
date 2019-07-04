@@ -31,7 +31,7 @@ class AdminController extends Controller
          User::where('email', $request->input('email'))->update(['api_key' => "$apikey"]);;
          return response()->json(['status' => 'success','api_key' => $apikey]);
       } else {
-           return response()->json(['status' => 'fail'],401);
+         return response()->json(['status' => 'fail'],401);
       }
     }
 }
