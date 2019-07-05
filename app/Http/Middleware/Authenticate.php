@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\User;
 use Illuminate\Contracts\Auth\Factory as Auth;
 
 class Authenticate
@@ -35,8 +36,21 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+        if(!$request->hasHeader('Authorization')) {
+          return response()->json('Authorization Header not found', 401);
+        }
+
+        if($request->header('Authorization') == null) {
+          return response()->json('No token provided', 401);
+        }
+
+        if ($request->header('Authorization')) {
+          $key = $request->header('Authorization');
+          $user = User::where('api_key', $key)->first();
+          if(empty($user)){
+            return response()->json('Unauthorised :()', 401);
+          }
+
         }
 
         return $next($request);
