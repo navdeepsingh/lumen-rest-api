@@ -19,12 +19,9 @@ class QrcodeController extends Controller
 
     public function create(Request $request)
     {
-        $this->validate($request, [
-            'api_key' => 'required'
-        ]);
         $qrcode = Qrcode::create($request->all());
 
-        return response()->json($qrcode, 201);
+        return response()->json(Qrcode::all(), 201);
     }
 
     public function update($id, Request $request)
@@ -32,7 +29,7 @@ class QrcodeController extends Controller
         $qrcode = Qrcode::findOrFail($id);
         $qrcode->update($request->all());
 
-        return response()->json($qrcode, 200);
+        return response()->json(Qrcode::all(), 200);
     }
 
     public function delete($id)
