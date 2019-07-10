@@ -14,6 +14,9 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('redirect/{code}', 'QrcodeController@redirect');
+
 $router->get('/phpinfo', function () {
     return phpinfo();
 });
