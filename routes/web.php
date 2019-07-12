@@ -16,15 +16,13 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('redirect/{code}', 'QrcodeController@redirect');
-
-$router->get('/phpinfo', function () {
-    return phpinfo();
-});
+$router->post('reset-password/', 'MailController@index');
 
 $router->group(['prefix' => 'api/'], function () use ($router) {
   $router->post('login/','AdminController@authenticate');
 });
 
+// API Routes
 $router->group(['prefix' => 'api/', 'middleware' => 'auth'], function () use ($router) {
   $router->get('user/', 'AdminController@user');
   $router->put('user/{id}', 'AdminController@update');
