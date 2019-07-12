@@ -26,6 +26,8 @@ $router->group(['prefix' => 'api/'], function () use ($router) {
 });
 
 $router->group(['prefix' => 'api/', 'middleware' => 'auth'], function () use ($router) {
+  $router->get('user/', 'AdminController@user');
+  $router->put('user/{id}', 'AdminController@update');
   $router->get('qrcode/', 'QrcodeController@index');
   $router->get('qrcode/{id}/', 'QrcodeController@show');
   $router->post('qrcode/','QrcodeController@create');

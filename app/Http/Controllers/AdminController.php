@@ -35,9 +35,19 @@ class AdminController extends Controller
       }
     }
 
-    public function validateuser(Request $request)
+    public function user(Request $request)
     {
-      //$user = User::where('api_key', $request->input('email'))->first();
-      return response()->json(['status' => 'validate']);
+      $key = $request->header('Authorization');
+      $user = User::where('api_key', $key)->first();
+      return response()->json($user, 200);
+    }
+
+    public function update($id, Request $request)
+    {
+
+      $user = User::findOrFail($id);
+      $result = $user->update(['email' => $request->input('email'), 'password' => Hash::make($request->input('password'))]);
+
+      return response()->json(['status' => $result]);
     }
 }

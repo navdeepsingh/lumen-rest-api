@@ -18,7 +18,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'username', 'password'
+        'email', 'password'
     ];
 
     /**
@@ -30,7 +30,4 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
     ];
 
-    public function qrcode() {
-      return $this->hasMany('App\Qrcode','user_id');
-    }
 }
