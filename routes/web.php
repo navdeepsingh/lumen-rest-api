@@ -20,17 +20,17 @@ $router->get('/', function () use ($router) {
 $router->get('redirect/{code}', 'QrcodeController@redirect');
 $router->post('reset-password/', 'MailController@index');
 
-$router->group(['prefix' => 'api/'], function () use ($router) {
-  $router->post('login/','AdminController@authenticate');
+$router->group(['prefix' => 'api'], function () use ($router) {
+  $router->post('/login','AdminController@authenticate');
 });
 
 // API Routes
-$router->group(['prefix' => 'api/', 'middleware' => 'auth'], function () use ($router) {
-  $router->get('user/', 'AdminController@user');
-  $router->put('user/{id}', 'AdminController@update');
-  $router->get('qrcode/', 'QrcodeController@index');
-  $router->get('qrcode/{id}/', 'QrcodeController@show');
-  $router->post('qrcode/','QrcodeController@create');
-  $router->put('qrcode/{id}/', 'QrcodeController@update');
-  $router->delete('qrcode/{id}/', 'QrcodeController@delete');
+$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
+  $router->get('/user', 'AdminController@user');
+  $router->put('/user/{id}', 'AdminController@update');
+  $router->get('/qrcode', 'QrcodeController@index');
+  $router->get('/qrcode/{id}', 'QrcodeController@show');
+  $router->post('/qrcode','QrcodeController@create');
+  $router->put('/qrcode/{id}', 'QrcodeController@update');
+  $router->delete('/qrcode/{id}', 'QrcodeController@delete');
 });
