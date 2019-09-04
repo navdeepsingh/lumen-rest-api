@@ -16,12 +16,15 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+$router->get('/ping', function () use ($router) {
+    return 'Ping from server ' . date('Y-m-d H:i:s');
+});
 
 $router->get('redirect/{code}', 'QrcodeController@redirect');
 $router->post('reset-password/', 'MailController@index');
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-  $router->post('/login','AdminController@authenticate');
+  $router->post('login','AdminController@authenticate');
 });
 
 // API Routes
