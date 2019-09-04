@@ -10,6 +10,8 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+// use Illuminate\Support\Facades\Hash;
+// dd(Hash::make('test123'));
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
