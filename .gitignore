@@ -1,6 +1,5 @@
 /.idea
 Homestead.json
 Homestead.yaml
-.env
 phpinfo.php
 phpMyAdmin
