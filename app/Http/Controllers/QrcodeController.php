@@ -41,6 +41,7 @@ class QrcodeController extends Controller
     public function redirect($code, Request $request)
     {
         $qrcode = Qrcode::where('source_link', $request->fullUrl())->first();
+        dd($request->fullUrl());
         return redirect($qrcode->destination_link);
     }
 }
